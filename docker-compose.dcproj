@@ -5,13 +5,14 @@
     <DockerTargetOS>Windows</DockerTargetOS>
     <ProjectGuid>8dfa499e-2720-42e3-bf5b-98e5f49274f6</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>http://{ServiceIPAddress}</DockerServiceUrl>
+    <DockerServiceUrl>http://localhost:8090</DockerServiceUrl>
     <DockerServiceName>customerreviewsmodule.web</DockerServiceName>
   </PropertyGroup>
-  <ItemGroup>
-    <None Include="docker-compose.override.yml">
-      <DependentUpon>docker-compose.yml</DependentUpon>
-    </None>
-    <None Include="docker-compose.yml" />
-  </ItemGroup>
+  <ItemGroup> 
+    <None Include="docker-compose.override.yml"> 
+      <DependentUpon>docker-compose.yml</DependentUpon> 
+    </None> 
+    <None Include="docker-compose.yml" /> 
+  </ItemGroup>  
 </Project>
+

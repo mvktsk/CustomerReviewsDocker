@@ -6,3 +6,4 @@ ARG source
 RUN mkdir c:\vc-platform\modules\customerreviewsmodule
 WORKDIR /vc-platform/modules/customerreviewsmodule
 COPY ${source:-obj/Docker/publish} .
+

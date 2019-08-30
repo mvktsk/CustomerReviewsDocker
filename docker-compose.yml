@@ -8,8 +8,6 @@ services:
     environment: 
       - ACCEPT_EULA=Y
       - sa_password=v!rto_Labs!
-    networks:
-      - virto
   customerreviewsmodule.web:
     image: ${DOCKER_REGISTRY-}customerreviewsmoduleweb
     build:
@@ -17,18 +15,11 @@ services:
       dockerfile: Dockerfile
     environment:
       - VIRTO_CONN_STR_VIRTOCOMMERCE=Data Source=vc-db;Initial Catalog=VirtoCommerce2;Persist Security Info=True;User ID=sa;Password=v!rto_Labs!;MultipleActiveResultSets=True;Connect Timeout=30;
-      - VIRTO_CONN_STR_AssetsConnectionString=provider=LocalStorage;rootPath=~/App_Data/Assets;publicUrl=http://localhost/assets
+      - VIRTO_CONN_STR_AssetsConnectionString=provider=LocalStorage;rootPath=~/App_Data/Assets;publicUrl=http://localhost:8090/assets
     depends_on:
       - vc-db
     volumes:
       - cms-content-volume:c:\vc-platform\App_Data\cms-content
-    networks:
-      - virto
- 
 volumes:
   cms-content-volume:
 
-networks:
-  virto:
-    external:
-      name: nat
