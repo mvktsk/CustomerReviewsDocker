@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
      
@@ -9,13 +9,11 @@ services:
     environment: 
       - ACCEPT_EULA=Y
       - sa_password=v!rto_Labs!
-    networks:
-      - virto
-      
-  vc-platform-web:
+          
+  vc-platform-module:
     build:
         context: .
-        dockerfile: Dockerfile-platform
+        dockerfile: Dockerfile
     ports:
       - "${DOCKER_PLATFORM_PORT:-8090}:80"
     environment:
@@ -25,13 +23,6 @@ services:
       - vc-db
     volumes:
       - cms-content-volume:c:\vc-platform\App_Data\cms-content
-    networks:
-      - virto
      
 volumes:
   cms-content-volume:
-
-networks:
-  virto:
-    external:
-      name: nat

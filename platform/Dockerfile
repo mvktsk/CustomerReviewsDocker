@@ -1,8 +1,5 @@
 # escape=`
-#Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
-#For more information, please see https://aka.ms/containercompat 
-
-FROM virtocommerce/platform 
+FROM virtocommerce/platform AS base
 
 # Download modules
 WORKDIR /vc-platform/Modules
@@ -209,9 +206,4 @@ RUN [Net.ServicePointManager]::SecurityProtocol = \"tls12, tls11, tls\"; `
 	Expand-Archive $fileName -DestinationPath $moduleId; `
 	Remove-Item $fileName
 
-# Create new module folder
-ARG source
-RUN mkdir c:\vc-platform\modules\customerreviewsmodule
-WORKDIR /vc-platform/modules/customerreviewsmodule
-COPY ${source:-obj/Docker/publish} .
-
+# TODO: all other modules
