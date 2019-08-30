@@ -1,0 +1,19 @@
+# escape=`
+
+FROM virtocommerce/platform
+MAINTAINER Support <support@virtocommerce.com>
+
+# Download modules
+WORKDIR /vc-platform/Modules
+
+# VirtoCommerce.Core
+RUN [Net.ServicePointManager]::SecurityProtocol = \"tls12, tls11, tls\"; `
+	$repo=\"vc-module-core\"; `
+	$moduleId=\"VirtoCommerce.Core\"; `
+	$version=\"2.25.26\"; `
+	$fileName=($moduleId + \"_\" + $version + \".zip\"); `
+	Invoke-WebRequest -OutFile $fileName (\"https://github.com/VirtoCommerce/{0}/releases/download/v{1}/{2}\" -f $repo, $version, $fileName); `
+	Expand-Archive $fileName -DestinationPath $moduleId; `
+	Remove-Item $fileName
+
+# TODO: all other modules
