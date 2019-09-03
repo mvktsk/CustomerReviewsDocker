@@ -104,6 +104,16 @@ RUN [Net.ServicePointManager]::SecurityProtocol = \"tls12, tls11, tls\"; `
 	Expand-Archive $fileName -DestinationPath $moduleId; `
 	Remove-Item $fileName
 
+# VirtoCommerce.Export
+RUN [Net.ServicePointManager]::SecurityProtocol = \"tls12, tls11, tls\"; `
+	$repo=\"vc-module-export\"; `
+	$moduleId=\"VirtoCommerce.Export\"; `
+	$version=\"2.1.1\"; `
+	$fileName=($moduleId + \"_\" + $version + \".zip\"); `
+	Invoke-WebRequest -OutFile $fileName (\"https://github.com/VirtoCommerce/{0}/releases/download/v{1}/{2}\" -f $repo, $version, $fileName); `
+	Expand-Archive $fileName -DestinationPath $moduleId; `
+	Remove-Item $fileName
+
 # VirtoCommerce.ImageTools
 RUN [Net.ServicePointManager]::SecurityProtocol = \"tls12, tls11, tls\"; `
 	$repo=\"vc-module-image-tools\"; `

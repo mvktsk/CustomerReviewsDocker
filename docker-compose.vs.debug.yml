@@ -4,4 +4,4 @@ services:
   customerreviewsmodule.web:
     volumes:
       - E:\Data\VirtoCommerce\mvktsk\CustomerReviewsModule\CustomerReviewsModule\CustomerReviewsModule.Web:C:\vc-platform\modules\customerreviewsmodule
-    entrypoint: cmd /c "start /B C:\\remote_debugger\\x64\\msvsmon.exe /noauth /anyuser /silent /nostatus /noclrwarn /nosecuritywarn /nofirewallwarn /nowowwarn /timeout:2147483646" 
+    

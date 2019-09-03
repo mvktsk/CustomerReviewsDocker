@@ -8,11 +8,11 @@
     <DockerServiceUrl>http://{ServiceIPAddress}</DockerServiceUrl>
     <DockerServiceName>customerreviewsmodule.web</DockerServiceName>
   </PropertyGroup>
-  <ItemGroup> 
-    <None Include="docker-compose.override.yml"> 
-      <DependentUpon>docker-compose.yml</DependentUpon> 
-    </None> 
-    <None Include="docker-compose.yml" /> 
-  </ItemGroup>  
+  <ItemGroup>
+    <None Include="docker-compose.override.yml">
+      <DependentUpon>docker-compose.yml</DependentUpon>
+    </None>
+    <None Include="docker-compose.yml" />
+    <None Include="ImportCatalog.ps1" />
+  </ItemGroup>
 </Project>
-

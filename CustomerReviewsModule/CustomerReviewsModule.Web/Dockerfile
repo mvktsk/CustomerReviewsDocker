@@ -107,6 +107,16 @@ RUN [Net.ServicePointManager]::SecurityProtocol = \"tls12, tls11, tls\"; `
 	Expand-Archive $fileName -DestinationPath $moduleId; `
 	Remove-Item $fileName
 
+# VirtoCommerce.Export
+RUN [Net.ServicePointManager]::SecurityProtocol = \"tls12, tls11, tls\"; `
+	$repo=\"vc-module-export\"; `
+	$moduleId=\"VirtoCommerce.Export\"; `
+	$version=\"2.1.1\"; `
+	$fileName=($moduleId + \"_\" + $version + \".zip\"); `
+	Invoke-WebRequest -OutFile $fileName (\"https://github.com/VirtoCommerce/{0}/releases/download/v{1}/{2}\" -f $repo, $version, $fileName); `
+	Expand-Archive $fileName -DestinationPath $moduleId; `
+	Remove-Item $fileName
+
 # VirtoCommerce.ImageTools
 RUN [Net.ServicePointManager]::SecurityProtocol = \"tls12, tls11, tls\"; `
 	$repo=\"vc-module-image-tools\"; `
@@ -172,9 +182,9 @@ RUN [Net.ServicePointManager]::SecurityProtocol = \"tls12, tls11, tls\"; `
 RUN [Net.ServicePointManager]::SecurityProtocol = \"tls12, tls11, tls\"; `
 	$repo=\"vc-module-quote\"; `
 	$moduleId=\"VirtoCommerce.Quote\"; `
-	$version=\"2.11.1\"; `
+	$version=\"2.12.0\"; `
 	$fileName=($moduleId + \"_\" + $version + \".zip\"); `
-	Invoke-WebRequest -OutFile $fileName (\"https://github.com/VirtoCommerce/{0}/releases/download/v{1}/{2}\" -f $repo, $version, $fileName); `
+	Invoke-WebRequest -OutFile $fileName \"https://github.com/VirtoCommerce/vc-module-quote/releases/download/v2.12/VirtoCommerce.Quote_2.12.0.zip\"; `
 	Expand-Archive $fileName -DestinationPath $moduleId; `
 	Remove-Item $fileName
 
@@ -208,6 +218,23 @@ RUN [Net.ServicePointManager]::SecurityProtocol = \"tls12, tls11, tls\"; `
 	Invoke-WebRequest -OutFile $fileName (\"https://github.com/VirtoCommerce/{0}/releases/download/v{1}/{2}\" -f $repo, $version, $fileName); `
 	Expand-Archive $fileName -DestinationPath $moduleId; `
 	Remove-Item $fileName
+
+# Import sample data 
+RUN powershell -NoProfile -Command "`
+$UrlServer = \"http://localhost\";`
+$UriToken = \"$UrlServer/token\";`
+$UriImport = \"$UrlServer/api/platform/sampledata/import?url=http:%2F%2Fvirtocommerce.blob.core.windows.net%2Fsample-data%2Fclothing-and-electronics_2_13_47.zip\";`
+$Body = @{`
+grant_type = \"password\"`
+ username = \"admin\"`
+ password = \"store\"`
+ client_id = \"web\"`
+};`
+$Result = Invoke-RestMethod -Uri $UriToken -Method Post -Body $Body;`
+$AuthValue = \"Bearer $($Result.access_token)\";`
+$Headers = @{Authorization = $AuthValue};`
+$result = Invoke-RestMethod -Method Post -Uri $UriImport -Headers $Headers;`
+"
 
 # Create new module folder
 ARG source
