@@ -11,7 +11,7 @@ services:
   customerreviewsmodule.web:
     image: ${DOCKER_REGISTRY-}customerreviewsmoduleweb
     build:
-      context: .\CustomerReviewsModule\CustomerReviewsModule.Web
+      context: .
       dockerfile: Dockerfile
     environment:
       - VIRTO_CONN_STR_VIRTOCOMMERCE=Data Source=vc-db;Initial Catalog=VirtoCommerce2;Persist Security Info=True;User ID=sa;Password=v!rto_Labs!;MultipleActiveResultSets=True;Connect Timeout=30;
