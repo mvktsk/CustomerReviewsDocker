@@ -124,10 +124,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dockerfile" />
-    <None Include=".dockerignore">
-      <DependentUpon>Dockerfile</DependentUpon>
-    </None>
     <None Include="module.ignore" />
     <None Include="packages.config" />
     <None Include="Content\help\index.html" />
