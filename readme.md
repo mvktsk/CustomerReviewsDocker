@@ -1,8 +1,16 @@
-# Docker training environment
+# Developing inside a Container
 
 ## Overview
 
 ## How to use
+
+## How to debug module
+
+Before debugging new module run VirtoCommerce platform manage in your browser: http:\\localhost
+Within Visual Studio, select the Attach to Process action in the Debug window:
+In the Transport, Remote is used and the Find button is used to establish the remote connection:
+The screenshot below shows the detected containers:
+Once the container has been selected, then the running process can be selected. For example, for debugging a IIS web application select w3wp.exe process:
 
 ## License
 

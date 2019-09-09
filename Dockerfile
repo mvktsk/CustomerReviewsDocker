@@ -227,6 +227,7 @@ COPY ImportCatalog.ps1 c:\ps
 # download the remote debugger
 RUN Invoke-WebRequest -OutFile c:\vs_remotetools.exe -Uri https://aka.ms/vs/16/release/RemoteTools.amd64ret.enu.exe;
 # install the remote debugging
+EXPOSE 4020 4021
 RUN "c:\vs_remotetools.exe /install /quiet /norestart"
 
 # Create new module folder

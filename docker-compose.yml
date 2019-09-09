@@ -20,5 +20,7 @@ services:
       - vc-db
     volumes:
       - cms-content-volume:c:\vc-platform\App_Data\cms-content
+#    command:
+#      - powershell.exe -executionpolicy bypass c:\ps\ImportCatalog.ps1
 volumes:
   cms-content-volume:
