@@ -9,7 +9,7 @@ services:
       - ACCEPT_EULA=Y
       - sa_password=v!rto_Labs!
   customerreviewsmodule.web:
-    image: ${DOCKER_REGISTRY-}customerreviewsmoduleweb
+    image: ${DOCKER_REGISTRY-}customerreviewsmodule.web
     build:
       context: .
       dockerfile: Dockerfile
@@ -22,4 +22,3 @@ services:
       - cms-content-volume:c:\vc-platform\App_Data\cms-content
 volumes:
   cms-content-volume:
-
