@@ -8,9 +8,19 @@
 
 Before debugging new module run VirtoCommerce platform manage in your browser: http:\\localhost
 Within Visual Studio, select the Attach to Process action in the Debug window:
-In the Transport, Remote is used and the Find button is used to establish the remote connection:
+![Menu](docs\media\screen-attach-to-process-menu.png)
+
+Chose **Connection type** **Remote** i in opened window and press the **Find** button to find the remote connection:
+![Find remote](docs\media\screen-attach-to-process-window.png)
+
 The screenshot below shows the detected containers:
-Once the container has been selected, then the running process can be selected. For example, for debugging a IIS web application select w3wp.exe process:
+![Remote container](docs\media\screen-remote-connections.png)
+
+Select container and press **Select** button.
+
+Once the container has been selected, then the running process can be selected. 
+For debugging a IIS web application select w3wp.exe process:
+![Attach](docs\media\screen-attach-to-process-process-selection.png)
 
 ## License
 
