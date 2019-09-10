@@ -1,9 +1,5 @@
 version: '3.4'
 
-services:
-  customerreviewsmodule.web:
-    ports:
-      - "8090:80"
 networks:
   default:
     external:
