@@ -222,6 +222,7 @@ RUN [Net.ServicePointManager]::SecurityProtocol = \"tls12, tls11, tls\"; `
 # Import sample data 
 RUN mkdir c:\ps
 COPY ImportCatalog.ps1 c:\ps
+COPY startup.ps1 c:\ps
 #RUN powershell.exe -executionpolicy bypass c:\ps\ImportCatalog.ps1
 
 # download the remote debugger
