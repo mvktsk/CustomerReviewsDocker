@@ -1,7 +1,7 @@
 # Developing inside a Container
 
 ## Overview
-
+![Developing inside a Container](docs\media\developing-inside-container.png)
 ## How to use
 
 ## How to debug module
@@ -21,6 +21,8 @@ Select container and press **Select** button.
 Once the container has been selected, then the running process can be selected. 
 For debugging a IIS web application select w3wp.exe process:
 ![Attach](docs\media\screen-attach-to-process-process-selection.png)
+
+You can read more about remote debugging in Visual Studio in this [article](https://docs.microsoft.com/en-us/visualstudio/debugger/attach-to-running-processes-with-the-visual-studio-debugger?view=vs-2019).
 
 ## License
 
