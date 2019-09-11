@@ -8,17 +8,16 @@ ARG source
 # Folder for powershel scripts
 RUN mkdir c:\ps
 
-# Download the remote debugger
-RUN Invoke-WebRequest -OutFile c:\vs_remotetools.exe -Uri https://aka.ms/vs/16/release/RemoteTools.amd64ret.enu.exe;
-# Install the remote debugging
+# Download and install remote debugger
 EXPOSE 4020 4021
-RUN "c:\vs_remotetools.exe /install /quiet /norestart"
+RUN Invoke-WebRequest -OutFile c:\vs_remotetools.exe -Uri https://aka.ms/vs/16/release/RemoteTools.amd64ret.enu.exe;`
+& 'c:\vs_remotetools.exe' /install /quiet /norestart
 
 
 # Download and install VC modules
 WORKDIR /vc-platform/Modules
 COPY InstallModules.ps1 c:\ps
-RUN powershell.exe -executionpolicy bypass c:\ps\InstallModules.ps1 c:\ps.ps1
+RUN powershell.exe -executionpolicy bypass c:\ps\InstallModules.ps1 
 
 
 # Create new module folder
