@@ -10,7 +10,7 @@ RUN mkdir c:\ps
 
 # Download and install remote debugger
 EXPOSE 4020 4021
-RUN Invoke-WebRequest -OutFile c:\vs_remotetools.exe -Uri https://aka.ms/vs/16/release/RemoteTools.amd64ret.enu.exe;`
+RUN Invoke-WebRequest -OutFile c:\vs_remotetools.exe -Uri https://aka.ms/vs/16/release/RemoteTools.amd64ret.enu.exe; `
 & 'c:\vs_remotetools.exe' /install /quiet /norestart
 
 
