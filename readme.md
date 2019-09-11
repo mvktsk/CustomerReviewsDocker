@@ -1,26 +1,26 @@
 # Developing inside a Container
 
 ## Overview
-![Developing inside a Container](docs\media\developing-inside-container.png)
+![Developing inside a Container](docs/media/developing-inside-container.png)
 ## How to use
 
 ## How to debug module
 
 Before debugging new module run VirtoCommerce platform manage in your browser: http:\\localhost
 Within Visual Studio, select the Attach to Process action in the Debug window:
-![Menu](docs\media\screen-attach-to-process-menu.png)
+![Menu](docs/media/screen-attach-to-process-menu.png)
 
 Chose **Connection type** **Remote** i in opened window and press the **Find** button to find the remote connection:
-![Find remote](docs\media\screen-attach-to-process-window.png)
+![Find remote](docs/media/screen-attach-to-process-window.png)
 
 The screenshot below shows the detected containers:
-![Remote container](docs\media\screen-remote-connections.png)
+![Remote container](docs/media/screen-remote-connections.png)
 
 Select container and press **Select** button.
 
 Once the container has been selected, then the running process can be selected. 
 For debugging a IIS web application select w3wp.exe process:
-![Attach](docs\media\screen-attach-to-process-process-selection.png)
+![Attach](docs/media/screen-attach-to-process-process-selection.png)
 
 You can read more about remote debugging in Visual Studio in this [article](https://docs.microsoft.com/en-us/visualstudio/debugger/attach-to-running-processes-with-the-visual-studio-debugger?view=vs-2019).
 
