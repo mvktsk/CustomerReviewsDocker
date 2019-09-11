@@ -5,14 +5,20 @@
 The main idea is to simplify the initial setup process for development environment (VC platform manager, SQL Server, IIS). This will speed up the onboarding process for new engineers who join our team.
 Developers would only need to download Docker and IDE (VIsual Studio), and not have to install external tools and services. Code edits will be done from the IDE as per normal and the changes will be tracked and propagated from host to the container. This simplifies initial setup.
 
-We are containerizing a VC platform manager web app. We will run it as a multi-container app and orchestrate it using Docker Compose. This app will consist of 2 services, 1 for our server & 1 for our database.
-The first order of business is to ensure that any code edits we do on the host machine are automatically propagated to the container. This makes the development experience feel more natural.
+VC platform manager web app containerized as 2 services 1 for web server & 1 for r database. We will run it as a multi-container app and orchestrate it using Docker Compose.
 
-This is only possible through bind mounting, which works similar to a Linux mount. When we mount a path in the host to a path in the container, the contents of the host directory will completely overwrite whatever is in the container directory, regardless of whether the container directory has files which were not present in the host directory at mount time. The result is that the container directory will be an exact snapshot of the host directory.
+![Developing inside a Container](docs/media/developing-inside-container.png)
+
+To ensure that any code edits the new module on host machine are automatically propagated to the container folder with builded module on host machine is mapped to c:\vc-platform\modules folder in web container. This is only possible through bind mounting, which works similar to a *mklink* mount in Windows. When a path in the host mounted to a path in the container, the contents of the host directory will completely overwrite whatever is in the container directory, regardless of whether the container directory has files which were not present in the host directory at mount time. The result is that the container directory will be an exact snapshot of the host directory. This makes the development experience feel more natural.
+
+Web container based on vcplatform image. Docker file additionally download and installed vc modules. To enabling the debug of a .Net Framework app remote debugger service additionally installed and run in the Web container.
+
+When the container is started, then the msvsmon.exe file is executed on the container as well, because msvsmon.exe is defined as an entrypoint in the docker-compose.vs.debug.g.yml
 
 [Visual Studio tools for Docker](https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2019) used in solution.
 
-![Developing inside a Container](docs/media/developing-inside-container.png)
+Solution structure
+Docker compose project added
 
 ## Prerequisites
 
@@ -22,6 +28,16 @@ Install [Docker desktop for Windows](https://docs.docker.com/docker-for-windows/
 During installation you'll need to chose Windows as operating system used inside your containers.
 
 ## How to use
+
+Fork repository
+Clone repository to local machine
+Open solution in Visual Studio
+Write code for new module.
+Build solution
+
+When you open solution [Visual Studio tools for Docker](https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2019) automatically build and uo docker-compose.
+
+First start can take long time for downloading base images (mssql vc-platform)
 
 ## How to debug module
 
