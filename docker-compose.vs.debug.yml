@@ -4,4 +4,4 @@ services:
   customerreviewsmodule.web:
     volumes:
       - .\CustomerReviewsModule\CustomerReviewsModule.Web:C:\vc-platform\modules\customerreviewsmodule
-    entrypoint: ["C:\Program Files\microsoft visual studio 16.0\common7\ide\remote debugger\x64\msvsmon.exe", " /nostatus /silent /noauth /anyuser /nosecuritywarn "]
+    entrypoint: ["powershell.exe", "c:\\ps\\startup.ps1"]
