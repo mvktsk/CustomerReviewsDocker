@@ -5,11 +5,11 @@
 The main idea is to simplify the initial setup process for development environment (VC platform manager, SQL Server, IIS). This will speed up the onboarding process for new engineers who join our team.
 Developers would only need to download Docker and IDE (VIsual Studio), and not have to install external tools and services. Code edits will be done from the IDE as per normal and the changes will be tracked and propagated from host to the container. This simplifies initial setup.
 
-VC platform manager web app containerized as 2 services 1 for web server & 1 for r database. We will run it as a multi-container app and orchestrate it using Docker Compose.
+VC platform manager web app containerized as 2 services 1 for web server & 1 for r database. It runs as a multi-container app and orchestrate it using Docker Compose.
 
 ![Developing inside a Container](docs/media/developing-inside-container.png)
 
-To ensure that any code edits the new module on host machine are automatically propagated to the container folder with builded module on host machine is mapped to c:\vc-platform\modules folder in web container. This is only possible through bind mounting, which works similar to a *mklink* mount in Windows. When a path in the host mounted to a path in the container, the contents of the host directory will completely overwrite whatever is in the container directory, regardless of whether the container directory has files which were not present in the host directory at mount time. The result is that the container directory will be an exact snapshot of the host directory. This makes the development experience feel more natural.
+To ensure that any code edits the new module on host machine are automatically propagated to the container, folder with builded module on host machine is mapped to c:\vc-platform\modules folder in web container. This is only possible through bind mounting, which works similar to a *mklink* mount in Windows. When a path in the host mounted to a path in the container, the contents of the host directory will completely overwrite whatever is in the container directory, regardless of whether the container directory has files which were not present in the host directory at mount time. The result is that the container directory will be an exact snapshot of the host directory. This makes the development experience feel more natural.
 
 Web container based on vcplatform image. Docker file additionally download and installed vc modules. To enabling the debug of a .Net Framework app remote debugger service additionally installed and run in the Web container.
 
