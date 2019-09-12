@@ -25,7 +25,7 @@ Developer write and build code for a new module in Visual Studio locally on host
 1. Fork repository
 1. Clone repository to local machine
 1. Open solution in Visual Studio
-1. Write code for new module.
+1. Write code for new module
 1. Build solution
 
 Current solution based on [template](https://marketplace.visualstudio.com/items?itemName=Virto-Commerce.VirtoCommerceModuleTemplates) for a new Virto Commerce module creation. To template solution added support for Docker Compose to a Visual Studio 2019 project, it adds the following elements in the solution:
@@ -40,9 +40,9 @@ Current solution based on [template](https://marketplace.visualstudio.com/items?
 When you open solution [Visual Studio tools for Docker](https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2019) automatically build and up docker-compose.
 First start can take long time for downloading base images (microsoft/mssql-server-windows-express, mcr.microsoft.com/dotnet/framework/aspnet, virtocommerce/platform) and building image from Docker file.
 
-[Visual Studio tools for Docker](https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2019) monitor changes in docker-compose.yml, docker-compose.override.yml, docker-compose.vs.debug.yml, Dockerfile and rebuild docker images automatically.
+[Visual Studio tools for Docker](https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2019) monitor changes in docker-compose.yml, docker-compose.override.yml, docker-compose.vs.debug.yml, Dockerfile and rebuild docker images automatically if files was changed.
 
-Each time you open a solution, Visual Studio automatically creates containers for Web service and database service. When the solution closes, the created containers are automatically deleted. This means that all changes that were made to the database or to the Virto Commerce Platform Manager configuration during application debugging will be lost after the solution is closed.
+Each time you open the solution, Visual Studio automatically creates containers for Web service and database service. When the solution closes, the created containers are automatically deleted. This means that all changes that were made to the database or to the Virto Commerce Platform Manager configuration during application debugging will be lost after the solution is closed.
 
 ## How to debug module
 
@@ -61,7 +61,7 @@ The screenshot below shows the detected containers:
 
 * Select container and press **Select** button.
 
-* Once the container has been selected, then the running process can be selected.
+* Once the container has been selected, then the running process can be attached.
 For debugging a IIS web application select w3wp.exe process:
 
 ![Attach](docs/media/screen-attach-to-process-process-selection.png)
