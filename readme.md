@@ -53,7 +53,7 @@ The screenshot below shows the detected containers:
 
 Select container and press **Select** button.
 
-Once the container has been selected, then the running process can be selected. 
+Once the container has been selected, then the running process can be selected.
 For debugging a IIS web application select w3wp.exe process:
 ![Attach](docs/media/screen-attach-to-process-process-selection.png)
 
