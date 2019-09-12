@@ -2,23 +2,18 @@
 
 ## Overview
 
-The main idea is to simplify the initial setup process for development environment (VC platform manager, SQL Server, IIS). This will speed up the onboarding process for new engineers who join our team.
-Developers would only need to download Docker and IDE (VIsual Studio), and not have to install external tools and services. Code edits will be done from the IDE as per normal and the changes will be tracked and propagated from host to the container. This simplifies initial setup.
+The main idea is to simplify the initial setup process for development environment. This will speed up the onboarding process for new engineers who join to our team.
+Developers would only need to download Docker and IDE (VIsual Studio), and not have to install external tools and services (IIS, SQL Server, VC platform manager). Code edits will be done from the IDE as per normal and the changes will be tracked and propagated from host to the container. This simplifies initial setup.
 
-VC platform manager web app containerized as 2 services 1 for web server & 1 for r database. It runs as a multi-container app and orchestrate it using Docker Compose.
+VC platform manager web app containerized as 2 services 1 for web service and 1 for database. It runs as a multi-container app and orchestrate it using Docker Compose.
 
 ![Developing inside a Container](docs/media/developing-inside-container.png)
 
-To ensure that any code edits the new module on host machine are automatically propagated to the container, folder with builded module on host machine is mapped to c:\vc-platform\modules folder in web container. This is only possible through bind mounting, which works similar to a *mklink* mount in Windows. When a path in the host mounted to a path in the container, the contents of the host directory will completely overwrite whatever is in the container directory, regardless of whether the container directory has files which were not present in the host directory at mount time. The result is that the container directory will be an exact snapshot of the host directory. This makes the development experience feel more natural.
+Web service container based on virtocommerce/platform latest image. Additionally Web service docker file contains code for download and install [VirtoCommerce modules and Visual Studio Remote Tool](https://visualstudio.microsoft.com/downloads#remote-tools-for-visual-studio-2019) to enabling the debug of a .Net Framework app.
 
-Web container based on vcplatform image. Docker file additionally download and installed vc modules. To enabling the debug of a .Net Framework app remote debugger service additionally installed and run in the Web container.
+When the Web service container is started, then the VC Platform manager and msvsmon.exe is executed on the container as well, because msvsmon.exe and IIS is defined as an entrypoint.
 
-When the container is started, then the msvsmon.exe file is executed on the container as well, because msvsmon.exe is defined as an entrypoint in the docker-compose.vs.debug.g.yml
-
-[Visual Studio tools for Docker](https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2019) used in solution.
-
-Solution structure
-Docker compose project added
+Developer write and build code for a new module locally on host machine. To ensure that any code edits on host machine are automatically propagated to the container, folder with builded module on host machine is mapped to c:\vc-platform\modules folder in container. This is only possible through bind mounting, which works similar to a *mklink* mount in Windows. When a path in the host mounted to a path in the container, the contents of the host directory will completely overwrite whatever is in the container directory, regardless of whether the container directory has files which were not present in the host directory at mount time. The result is that the container directory will be an exact snapshot of the host directory. This makes the development experience feel more natural.
 
 ## Prerequisites
 
@@ -35,6 +30,12 @@ Open solution in Visual Studio
 Write code for new module.
 Build solution
 
+
+
+[Visual Studio tools for Docker](https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2019) used in solution.
+
+Solution structure
+Docker compose project added
 When you open solution [Visual Studio tools for Docker](https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2019) automatically build and uo docker-compose.
 
 First start can take long time for downloading base images (mssql vc-platform)
