@@ -3,15 +3,15 @@
 ## Overview
 
 The main idea is to simplify the initial setup process for development environment. This will speed up the onboarding process for new engineers who join to our team.
-Developers would only need to download Docker and IDE (VIsual Studio), and not have to install external tools and services (IIS, SQL Server, VC platform manager). Code edits will be done from the IDE as per normal and the changes will be tracked and propagated from host to the container.
+Developers would only need to download Docker and IDE (VIsual Studio), and not have to install external tools and services (IIS, SQL Server, Virto Commerce Platform Manager). Code edits will be done from the IDE as per normal and the changes will be tracked and propagated from host to the container.
 
-VC platform manager web app containerized as 2 services: 1 for web service and 1 for database. It runs as a multi-container app and orchestrate it using Docker Compose.
+Virto Commerce Platform Manager web app containerized as 2 services: 1 for web service and 1 for database. It runs as a multi-container app and orchestrate it using Docker Compose.
 
 ![Developing inside a Container](docs/media/developing-inside-container.png)
 
-Web service container based on virtocommerce/platform latest image. Additionally Web service docker file contains code for download and install VirtoCommerce modules and [Visual Studio Remote Tool](https://visualstudio.microsoft.com/downloads#remote-tools-for-visual-studio-2019) to enabling the debug of a .Net Framework app.
+Web service container based on virtocommerce/platform latest image. Additionally Web service Docker file contains code for download and install VirtoCommerce modules and [Visual Studio Remote Tool](https://visualstudio.microsoft.com/downloads#remote-tools-for-visual-studio-2019) to enabling the debug of a .Net Framework app.
 
-When the Web service container is started, then the VC Platform manager and msvsmon.exe is executed on the container as well, because msvsmon.exe and IIS is defined as an entrypoint. Msvsmon.exe is interacting with Visual Studio and therefore we are able to set a breakpoint and debug the code as developer wish.
+When the Web service container is started, then the Virto Commerce Platform Manager and msvsmon.exe is executed on the container as well, because msvsmon.exe and IIS is defined as an entrypoint. Msvsmon.exe is interacting with Visual Studio and therefore we are able to set a breakpoint and debug the code as developer wish.
 
 Developer write and build code for a new module in Visual Studio locally on host machine. To ensure that any code edits on host machine are automatically propagated to the container, folder with builded module on host machine is mapped to c:\vc-platform\modules folder in the container. This is only possible through bind mounting, which works similar to a *mklink* mount in Windows. When a path in the host mounted to a path in the container, the contents of the host directory will completely overwrite whatever is in the container directory, regardless of whether the container directory has files which were not present in the host directory at mount time. The result is that the container directory will be an exact snapshot of the host directory. This makes the development experience feel more natural.
 
@@ -38,13 +38,15 @@ Current solution based on [template](https://marketplace.visualstudio.com/items?
   * .dockerignore
 
 When you open solution [Visual Studio tools for Docker](https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2019) automatically build and up docker-compose.
-First start can take long time for downloading base images (microsoft/mssql-server-windows-express, mcr.microsoft.com/dotnet/framework/aspnet,virtocommerce/platform) and building image from docker file.
+First start can take long time for downloading base images (microsoft/mssql-server-windows-express, mcr.microsoft.com/dotnet/framework/aspnet,virtocommerce/platform) and building image from Docker file. 
+
+Each time you open a solution, Visual Studio automatically creates containers for Web services and database service. When the solution closes, the created containers are automatically deleted. This means that all changes that were made to the database or to the Virto Commerce Platform Manager configuration during application debugging will be lost after the solution is closed.
 
 [Visual Studio tools for Docker](https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2019) monitor changes in docker-compose.yml, docker-compose.override.yml, docker-compose.vs.debug.yml, Dockerfile and rebuild docker images automatically.
 
 ## How to debug module
 
-* Before debugging new module run VirtoCommerce platform manager in your browser: http:\\localhost
+* Before debugging new module run Virto Commerce Platform Manager in your browser: http:\\localhost
 * Within Visual Studio, select the Attach to Process action in the Debug window:
 ![Menu](docs/media/screen-attach-to-process-menu.png)
 
