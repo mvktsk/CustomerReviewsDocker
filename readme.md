@@ -3,7 +3,7 @@
 ## Overview
 
 The main idea is to simplify the initial setup process for development environment. This will speed up the onboarding process for new engineers who join to our team.
-Developers would only need to download Docker and IDE (VIsual Studio), and not have to install external tools and services (IIS, SQL Server, Virto Commerce Platform Manager). Code edits will be done from the IDE as per normal and the changes will be tracked and propagated from host to the container.
+Developers would only need to download Docker and Visual Studio, and not have to install external tools and services (IIS, SQL Server, Virto Commerce Platform Manager). Code edits will be done from the Visual Studio as per normal and the changes will be tracked and propagated from host to the container.
 
 Virto Commerce Platform Manager web app containerized as 2 services: 1 for web service and 1 for database. It runs as a multi-container app and orchestrate it using Docker Compose.
 
