@@ -20,6 +20,8 @@ Developer write and build code for a new module in Visual Studio locally on host
 * You need to have some basic understanding of [Docker](https://docs.docker.com/get-started/), [Docker Compose](https://docs.docker.com/compose/gettingstarted/), and the key terms used in the ecosystem.
 * Install [Docker desktop for Windows](https://docs.docker.com/docker-for-windows/install/) on your machine. During installation you'll need to chose Windows as operating system used inside your containers.
 
+## How to install
+
 ## How to use
 
 1. Fork repository
@@ -37,12 +39,22 @@ Current solution based on [template](https://marketplace.visualstudio.com/items?
   * Dockerfile
   * .dockerignore
 
+## How to build and run Docker containers
+
 When you open solution [Visual Studio tools for Docker](https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2019) automatically build and up docker-compose.
 First start can take long time for downloading base images (microsoft/mssql-server-windows-express, mcr.microsoft.com/dotnet/framework/aspnet, virtocommerce/platform) and building image from Docker file.
 
 [Visual Studio tools for Docker](https://docs.microsoft.com/en-us/visualstudio/containers/overview?view=vs-2019) monitor changes in docker-compose.yml, docker-compose.override.yml, docker-compose.vs.debug.yml, Dockerfile and rebuild docker images automatically if files was changed.
 
-Each time you open the solution, Visual Studio automatically creates containers for Web service and database service. When the solution closes, the created containers are automatically deleted. This means that all changes that were made to the database or to the Virto Commerce Platform Manager configuration during application debugging will be lost after the solution is closed.
+Each time you open the solution, Visual Studio automatically creates containers for Web service and database service.
+
+You can look for building images and starting up the containers in the output window by choosing Container tools in the drop-down menu.
+
+![container-tools-window](docs/media/container-tools-window.png)
+
+When the solution closes, the created containers are automatically deleted. This means that all changes that were made to the database or to the Virto Commerce Platform Manager configuration during application debugging will be lost after the solution is closed.
+
+## How to write the code
 
 ## How to debug module
 
@@ -67,6 +79,11 @@ For debugging a IIS web application select w3wp.exe process:
 ![Attach](docs/media/screen-attach-to-process-process-selection.png)
 
 You can read more about Visual Studio remote debugging in this [article](https://docs.microsoft.com/en-us/visualstudio/debugger/attach-to-running-processes-with-the-visual-studio-debugger?view=vs-2019).
+
+## Troubleshooting
+
+* How to diagnose [Docker problems](https://docs.docker.com/docker-for-windows/troubleshoot)
+* How to troubleshoot [Visual Studio Docker development](https://docs.microsoft.com/ru-ru/visualstudio/containers/troubleshooting-docker-errors?view=vs-2019)
 
 ## License
 
